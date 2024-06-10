@@ -1,0 +1,11 @@
+<app-movie-card [data]="movie" (addFavorites)="handleAddFavorite($event)" (addWatchList)="handleAddWatchList($event)"></app-movie-card>
+
+<div class="favorites">
+    <h3>Улюблене</h3>
+    <div class="favorites__list"></div>
+</div>
+
+<div class="watchlist">
+    <h3>Подивитись</h3>
+    <div class="watchlist__list"></div>
+</div>
