@@ -1,0 +1,16 @@
+.movies-list {
+    padding-top: 20px;
+    &__title{
+        font-size: 30px;
+        &:not(:last-child){
+            margin-bottom: 50px;
+        }
+    }
+    &__items{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+        gap: 50px;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+}
