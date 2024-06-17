@@ -15,26 +15,24 @@
     </section>
 }
 @if (favoritesList.length){
-    <section class="favorites-list">
-        <div class="favorites-list__container">
-            <h3 class="favorites-list__title">Ваші улюблені фільми</h3>
-            <div class="fevorites-list__items">
-                @for(title of favoritesList; track title; let last = $last){
-                    <a href="#" class="favorites-list__link">{{title}}</a>
-                    <ng-container *ngIf="!last">,<br></ng-container>
+    <section class="movies-list">
+        <div class="movies-list__container">
+            <h3 class="movies-list__title">Ваші улюблені фільми</h3>
+            <div class="movies-list__items">
+                @for(movie of favoritesList; track movie.id){
+                    <app-movie-card [movieData]="movie"></app-movie-card>
                 }
             </div>
         </div>
     </section>
 }
 @if (watchList.length){
-    <section class="watchlist-list">
-        <div class="watchlist-list__container">
-            <h3 class="watchlist-list__title">Моя добірка фільмів</h3>
-            <div class="watchlist-list__items">
-                @for(title of watchList; track title; let last = $last){
-                    <a href="#" class="watchlist-list__link">{{title}}</a>
-                    <ng-container *ngIf="!last">, <br></ng-container>
+    <section class="movies-list">
+        <div class="movies-list__container">
+            <h3 class="movies-list__title">Моя добірка фільмів</h3>
+            <div class="movies-list__items">
+                @for(movie of watchList; track movie.id){
+                    <app-movie-card [movieData]="movie"></app-movie-card>
                 }
             </div>
         </div>

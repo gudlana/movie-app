@@ -1,7 +1,6 @@
 .movie-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    max-width: 200px;
+    height: 280px;
     transition: all 0.3s ease;
     overflow: hidden;
     border: 1px solid #fff;
@@ -11,18 +10,39 @@
     &__link{
         overflow: hidden;
         transition:  all 0.3s ease;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #6B77E5B2;
+            visibility: hidden;
+            z-index: 3;
+        }
+        
+    }
+    &:hover {
+        .movie-card__link::before{
+            visibility: visible;
+        }
+        .movie-card__details{
+            visibility: visible;
+        }
     }
     img{
         width: 100%;
-        aspect-ratio: 150 / 220;
+        height: 100%;
         object-fit: cover;
     }
     &__favorite{
+        width: 25px;
         position: absolute;
-        top: 27px;
-        right: 40px;
+        top: 10px;
+        right: 10px;
         border-radius: 50%;
-        z-index: 2;
+        z-index: 10;
         transition: all 0.3s ease;
         img{
             width: 100%;
@@ -39,12 +59,12 @@
         }
     }
     &__play-list{
-        width: 33px;
+        width: 25px;
         position: absolute;
-        top: 80px;
-        right: 40px;
+        top: 40px;
+        right: 10px;
         border-radius: 50%;
-        z-index: 3;
+        z-index: 10;
         transition: all 0.3s ease;
         img{
             width: 100%;
@@ -61,18 +81,19 @@
         }
     }
     &__details{
-        & > *{
-            margin-bottom: 10px;
-        }
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
         padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        visibility: hidden;
+        cursor: pointer;
     }
     &__title{
         font-size: 20px;
         font-weight: 500;
-    }
-    @media(any-hover:hover){
-        &:hover{
-            transform: scale(1.02);
-        }
     }
 }

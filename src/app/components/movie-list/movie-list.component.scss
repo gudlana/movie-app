@@ -1,4 +1,4 @@
-.movies-list {
+.movies-list  {
     padding-top: 20px;
     &__title{
         font-size: 30px;
@@ -8,9 +8,10 @@
     }
     &__items{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
-        gap: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+        gap: 20px;
         align-items: stretch;
         justify-content: space-between;
     }
 }
+
