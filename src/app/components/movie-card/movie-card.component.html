@@ -1,15 +1,18 @@
-<div class="movie-card">
-    <div class="movie-card__img">
-        <img [src]="movie.imgPath" alt="Image">
-    </div>
+<article class="movie-card">
+    <a href="#" class="movie-card__link">
+        <img [src]="movieData.imgPath" alt="Image">
+    </a>
+    <button class="movie-card__favorite" (click)="onAddToFavoritesList(movieData.id)">
+        <img src="assets/images/favorite.svg" alt="Favorite">
+    </button>  
+    <button class="movie-card__play-list" (click)="onAddToWatchList(movieData.id)">
+        <img src="assets/images/list_icon.svg" alt="Play List">
+    </button>  
     <div class="movie-card__details">
-        <h2>{{movie.title}}</h2>
-        <p>Рік виходу: {{movie.release_date}}</p>
-        <p>Рейтинг: {{movie.rating}}</p>
-        <p>{{movie.overview}}</p>
-        <div class="movie-card__actions">
-            <button (click)="addToFavorites()">Додати до улюблених</button>
-            <button (click)="addToWatchList()">Додати до списку перегляду</button>
-        </div>
+        <h2 class="movie-card__title">{{movieData.title}}</h2>
+        <p>Рік виходу: {{movieData.release_year}}</p>
+        <p>Рейтинг: {{movieData.rating}}</p>
+        <p>{{movieData.overview}}</p>
+        <p>Касові збори: {{movieData.rental_movie | numberFormat}}</p>
     </div>
-</div>
+</article>

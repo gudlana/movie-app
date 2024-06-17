@@ -1,26 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Movie } from '../../entities/moviesIData';
+import { NumberFormatPipe } from '../../pipes/number-format.pipe';
 
 @Component({
   selector: 'app-movie-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NumberFormatPipe],
   templateUrl: './movie-card.component.html',
   styleUrl: './movie-card.component.scss',
 })
-export class MovieCardComponent implements OnInit {
-  @Input() data: any;
-  @Output() addFavorites = new EventEmitter<any>();
-  @Output() addWatchList = new EventEmitter<any>();
+export class MovieCardComponent {
+  @Input() movieData!: Movie;
+  @Output() addToFavoritesList = new EventEmitter<number>();
+  @Output() addToWatchList = new EventEmitter<number>();
 
-  public movie: any;
-  ngOnInit() {
-    this.movie = this.data;
+  public onAddToFavoritesList(id: number): void {
+    this.addToFavoritesList.emit(id);
   }
-  addToFavorites() {
-    this.addFavorites.emit(this.movie.title);
-  }
-  addToWatchList() {
-    this.addWatchList.emit(this.movie.title);
+  public onAddToWatchList(id: number): void {
+    this.addToWatchList.emit(id);
   }
 }

@@ -1,19 +1,99 @@
-.movie-card{
-    max-width: 300px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-
-    &__img{
-        max-width: 100%;
+.movie-card {
+    max-width: 200px;
+    height: 280px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #fff;
+    position: relative;
+    border-radius: 12px;
+    z-index: 1;
+    &__link{
+        overflow: hidden;
+        transition:  all 0.3s ease;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #6B77E5B2;
+            visibility: hidden;
+            z-index: 3;
+        }
+        
+    }
+    &:hover {
+        .movie-card__link::before{
+            visibility: visible;
+        }
+        .movie-card__details{
+            visibility: visible;
+        }
+    }
+    img{
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
-
-    &__actions{
-        button{
-            &:not(:last-child){
-                margin-bottom: 10px;
+    &__favorite{
+        width: 25px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 50%;
+        z-index: 10;
+        transition: all 0.3s ease;
+        img{
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 33 / 33;
+            object-fit: cover;
+            object-position: center;
+        }
+        @media(any-hover:hover){
+            &:hover{
+                box-shadow: inset0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 grba(0 0 0 0.19);
+                transform: scale(1.1);
             }
         }
+    }
+    &__play-list{
+        width: 25px;
+        position: absolute;
+        top: 40px;
+        right: 10px;
+        border-radius: 50%;
+        z-index: 10;
+        transition: all 0.3s ease;
+        img{
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 33 / 33;
+            object-fit: cover;
+            object-position: center;
+        }
+        @media(any-hover:hover){
+            &:hover{
+                box-shadow: inset0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 grba(0 0 0 0.19);
+                transform: scale(1.1);
+            }
+        }
+    }
+    &__details{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        visibility: hidden;
+        cursor: pointer;
+    }
+    &__title{
+        font-size: 20px;
+        font-weight: 500;
     }
 }
