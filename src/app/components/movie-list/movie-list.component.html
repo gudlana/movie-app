@@ -1,4 +1,4 @@
-@if (movies.length){
+<!-- @if (movies.length){
     <section class="movies-list">
         <div class="movies-list__container">
             <h2 class="movies-list__title">Дивитися Фільми онлайн українською мовою</h2>
@@ -33,6 +33,47 @@
             <div class="movies-list__items">
                 @for(movie of watchList; track movie.id){
                     <app-movie-card [movieData]="movie"></app-movie-card>
+                }
+            </div>
+        </div>
+    </section>
+} -->
+
+@if (movies.length){
+    <section class="movies-list">
+        <div class="movies-list__container">
+            <h2 class="movies-list__title">Дивитися Фільми онлайн українською мовою</h2>
+            <div class="movies-list__items">
+                @for(movie of movies; track movie.id){
+                    <app-material-movie-card
+                        [movieData]="movie"
+                        (addToFavoritesList)="addToFavoritesList($event)"
+                        (addToWatchList)="addToWatchList($event)">
+                    </app-material-movie-card>
+                }
+            </div>
+        </div>
+    </section>
+}
+@if (favoritesList.length){
+    <section class="movies-list">
+        <div class="movies-list__container">
+            <h3 class="movies-list__title">Ваші улюблені фільми</h3>
+            <div class="movies-list__items">
+                @for(movie of favoritesList; track movie.id){
+                    <app-material-movie-card [movieData]="movie"></app-material-movie-card>
+                }
+            </div>
+        </div>
+    </section>
+}
+@if (watchList.length){
+    <section class="movies-list">
+        <div class="movies-list__container">
+            <h3 class="movies-list__title">Моя добірка фільмів</h3>
+            <div class="movies-list__items">
+                @for(movie of watchList; track movie.id){
+                    <app-material-movie-card [movieData]="movie"></app-material-movie-card>
                 }
             </div>
         </div>
