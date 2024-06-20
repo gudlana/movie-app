@@ -1,0 +1,7 @@
+.movie-card{
+    justify-content: space-between;
+    height: 100%;
+    &__footer,&__subtitle{
+        text-align: center;
+    }
+}

@@ -3,11 +3,12 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { movies } from '../../entities/moviesData';
 import { Movie } from '../../entities/moviesIData';
 import { CommonModule } from '@angular/common';
+import { MaterialMovieCardComponent } from '../material-movie-card/material-movie-card.component';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [MovieCardComponent, CommonModule],
+  imports: [MaterialMovieCardComponent, CommonModule],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.scss',
 })
