@@ -1,0 +1,21 @@
+<div class="page-wrapper">
+    <app-header [favoritesIds]="favoritesIds"
+                [watchLaterIds]="watchLaterIds">
+    </app-header>
+    @if (popularMovies.length){
+        <section class="movies-list">
+            <div class="movies-list__container">
+                <h2 class="movies-list__title">Популярні</h2>
+                <div class="movies-list__items">
+                    @for(movie of popularMovies; track movie.id){
+                        <app-material-movie-card
+                            [movieData]="movie"
+                            (addToFavoritesList)="addToFavoritesList($event)"
+                            (addToWatchList)="addToWatchList($event)">
+                        </app-material-movie-card>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+</div>

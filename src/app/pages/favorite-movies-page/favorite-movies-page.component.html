@@ -1,0 +1,14 @@
+@if (favoriteMovies.length){
+    <section class="movies-list">
+        <div class="movies-list__container">
+            <h2 class="movies-list__title">Улюблене</h2>
+            <div class="movies-list__items">
+                @for(movie of favoriteMovies; track movie.id){
+                    <app-material-movie-card
+                        [movieData]="movie">
+                    </app-material-movie-card>
+                }
+            </div>
+        </div>
+    </section>
+}

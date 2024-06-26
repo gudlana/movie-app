@@ -3,11 +3,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Movie } from '../../entities/moviesIData';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-material-movie-card',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, MatIconModule],
+  imports: [MatButtonModule, MatCardModule, MatIconModule, RouterLink],
   templateUrl: './material-movie-card.component.html',
   styleUrl: './material-movie-card.component.scss',
 })

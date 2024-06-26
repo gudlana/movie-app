@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="movie-details">
+    <!-- <div class="movie-details__container"> -->
+        <div class="movie-details__body">
+            <img [src]="movieData.imgPath" alt="Poster">
+            <div class="movie-details__content">
+                <h2 class="movie-details__title">{{movieData.title}}</h2>
+                <p><span>Короткий опис:</span> {{movieData.overview}}</p>
+                <p><span>Рік виходу: </span>{{movieData.release_year}}</p>
+                <p><span>Рейтинг: </span>{{movieData.rating}}</p>
+                <p><span>Касові збори: </span>{{movieData.rental_movie | numberFormat}}</p>
+            </div>
+        </div>
+    <!-- </div> -->
+</div>
