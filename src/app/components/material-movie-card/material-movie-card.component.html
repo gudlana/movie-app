@@ -1,10 +1,12 @@
 <mat-card class="example-card movie-card" appearance="outlined">    
-    <img mat-card-image [src]="movieData.imgPath" alt="Poster">
+   <a [routerLink]="['/movie', movieData.id]" class="movie-card__link">
+     <img mat-card-image [src]="movieData.imgPath" alt="Poster">
+    </a>
     <mat-card-footer class="movie-card__footer">
-        <mat-card-title class="movie-card__title"><a href="#">{{movieData.title}}</a></mat-card-title>
+        <mat-card-title class="movie-card__title"><a [routerLink]="['/movie', movieData.id]" class="movie-card__link-title">{{movieData.title}}</a></mat-card-title>
         <mat-card-subtitle class="movie-card__subtitle">Рік виходу: {{movieData.release_year}} - Рейтинг: {{movieData.rating}}</mat-card-subtitle>
     </mat-card-footer>
-    <mat-card-actions>
+    <mat-card-actions class="movie-card__actions">
         <button mat-button (click)="onAddToFavoritesList(movieData.id)">
             <mat-icon>favorite_border</mat-icon>
         </button>
