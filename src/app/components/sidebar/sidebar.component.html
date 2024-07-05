@@ -1,0 +1,18 @@
+<div class="sidebar">
+    <div class="sidebar__container">
+        <a class="sidebar__logo">
+            <img src="assets/images/Logo.png" alt="Logo">
+        </a>
+        <ul class="sidebar__list">
+                @for (item of sidebarLinks;track $index){
+                    <li class="sidebar__item">
+                        <a class="sidebar__link"
+                            [routerLink]="[item.routeLink]"
+                            routerLinkActive="sidebar__link-active"
+                            >{{item.label}}</a>
+                    </li>
+                }
+        </ul>
+    </div>
+    
+</div>

@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { MovieCardComponent } from '../movie-card/movie-card.component';
-import { movies } from '../../entities/moviesData';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Movie } from '../../entities/moviesIData';
 import { CommonModule } from '@angular/common';
 import { MaterialMovieCardComponent } from '../material-movie-card/material-movie-card.component';
@@ -13,24 +11,14 @@ import { MaterialMovieCardComponent } from '../material-movie-card/material-movi
   styleUrl: './movie-list.component.scss',
 })
 export class MovieListComponent {
-  movies: Movie[] = movies;
-  public favoritesList: Movie[] = [];
-  public watchList: Movie[] = [];
+  @Input() movies!: Movie[];
+  @Output() addedToFavorites = new EventEmitter<number>();
+  @Output() addedToWatchlist = new EventEmitter<number>();
 
-  private addToList(list: Movie[], id: number) {
-    const movieToList = list.find((movie) => movie.id === id);
-    if (movieToList) return list;
-    const addedMovie = this.movies.find((movie) => movie.id === id);
-    if (addedMovie) {
-      return [...list, addedMovie];
-    }
-    return list;
+  addToFavorites(id: number) {
+    this.addedToFavorites.emit(id);
   }
-
-  public addToFavoritesList(id: number): void {
-    this.favoritesList = this.addToList(this.favoritesList, id);
-  }
-  public addToWatchList(id: number): void {
-    this.watchList = this.addToList(this.watchList, id);
+  addToWatchlist(id: number) {
+    this.addedToWatchlist.emit(id);
   }
 }

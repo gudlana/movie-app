@@ -1,0 +1,19 @@
+@if (movie){
+    <div class="movie-details">
+        <div class="movie-details__body">
+            <div class="movie-details__poster"><img [src]="imageUrl" alt="Poster"></div>
+            <div class="movie-details__content">
+                <h2 class="movie-details__title">{{movie.title}}</h2>
+                <p><span>Короткий опис: </span>{{movie.overview}}</p> 
+                <p><span>Рік виходу: </span>{{movie.release_date}}</p>
+                <p><span>Рейтинг: </span>{{movie.vote_average}}</p>   
+                <ul class="movie-details__genres">
+                    @for (item of genres; track $index) {
+                      <li>{{ item }}</li>
+                    }
+                </ul>          
+            </div>
+        </div>
+    </div>
+}
+
