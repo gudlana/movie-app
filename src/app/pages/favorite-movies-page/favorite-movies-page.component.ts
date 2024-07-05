@@ -1,36 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialMovieCardComponent } from '../../components/material-movie-card/material-movie-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { movies } from '../../entities/moviesData';
 import { Movie } from '../../entities/moviesIData';
+import { getMoviesById } from '../../utils/getMoviesById';
+import { LayoutComponent } from '../../shared/layout/layout.component';
+import { MovieListComponent } from '../../components/movie-list/movie-list.component';
 
 @Component({
   selector: 'app-favorite-movies-page',
   standalone: true,
-  imports: [MaterialMovieCardComponent],
+  imports: [MovieListComponent, LayoutComponent],
   templateUrl: './favorite-movies-page.component.html',
   styleUrl: './favorite-movies-page.component.scss',
 })
 export class FavoriteMoviesPageComponent implements OnInit {
-  favoritesId: string[] = [];
-  movies = [...movies];
-  favoriteMovies: Movie[] = [];
+  movies: Movie[] = [];
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      const dataString = params['data'];
-      this.favoritesId = dataString ? JSON.parse(dataString) : [];
-    });
-    this.loadFavoriteMoviesList();
-  }
-  loadFavoriteMoviesList() {
-    if (this.favoritesId.length) {
-      for (const id of this.favoritesId) {
-        const movie = this.movies.find((movie) => movie.id === parseInt(id));
-        if (movie) this.favoriteMovies.push(movie);
+      const ids = params['data'].split(',').map(Number) as number[];
+      if (ids) {
+        this.movies = getMoviesById(ids);
       }
-    } else this.favoriteMovies = [];
+    });
   }
 }

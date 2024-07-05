@@ -1,0 +1,11 @@
+<div class="layout">
+    <app-header
+        [favoritesIds]="favoritesIds"
+        [watchLaterIds]="watchLaterIds">
+    </app-header>
+    <app-movie-list
+        [movies]="movies"
+        (addedToFavorites)="addToFavorites($event)"
+        (addedToWatchlist)="addToWatchlist($event)">
+    </app-movie-list>
+</div>

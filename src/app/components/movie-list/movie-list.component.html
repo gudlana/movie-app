@@ -1,16 +1,12 @@
-@if (movies.length){
-    <section class="movies-list">
-        <div class="movies-list__container">
-            <h2 class="movies-list__title">Дивитися Фільми онлайн українською мовою</h2>
-            <div class="movies-list__items">
-                @for(movie of movies; track movie.id){
-                    <app-material-movie-card
-                        [movieData]="movie"
-                        (addToFavoritesList)="addToFavoritesList($event)"
-                        (addToWatchList)="addToWatchList($event)">
-                    </app-material-movie-card>
-                }
-            </div>
+<section class="movies-list">
+    <div class="movie-list__container">
+        <div class="movies-list__items">
+            @for(movie of movies; track movie.id){
+                <app-material-movie-card
+                    [movie]="movie"
+                    (addedToFavorites)="addToFavorites($event)"
+                    (addedToWatchlist)="addToWatchlist($event)">
+                </app-material-movie-card>            }
         </div>
-    </section>
-}
+    </div>
+</section>

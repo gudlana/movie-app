@@ -12,13 +12,13 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  @Input() favoritesIds: string[] = [];
-  @Input() watchLaterIds: string[] = [];
+  @Input() favoritesIds: number[] = [];
+  @Input() watchLaterIds: number[] = [];
 
   constructor(private router: Router) {}
 
-  navigateWithData(data: string[], isFavorite?: string) {
-    const dataString = JSON.stringify(data);
+  navigateWithData(data: number[], isFavorite?: string) {
+    const dataString = (data as number[]).map(String).join(',');
     const path = isFavorite ? 'favorite' : 'watch-list';
 
     this.router.navigate([{ outlets: { header: [path] } }], {

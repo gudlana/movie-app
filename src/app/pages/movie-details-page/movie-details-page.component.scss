@@ -4,8 +4,11 @@
         display: flex;
         column-gap: 30px;
         justify-content: flex-start;
+    &__poster{
+        max-width: 600px;
+    }
         img{
-            min-width: 400px;
+            width: 100%;
             aspect-ratio: 400 / 600;
             object-fit: cover;
         }

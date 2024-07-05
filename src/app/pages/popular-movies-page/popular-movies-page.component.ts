@@ -1,32 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
-import { HeaderComponent } from '../../components/header/header.component';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Movie } from '../../entities/moviesIData';
-import { movies } from '../../entities/moviesData';
-import { MaterialMovieCardComponent } from '../../components/material-movie-card/material-movie-card.component';
+import { popularMovies } from '../../entities/moviesData';
+import { LayoutComponent } from '../../shared/layout/layout.component';
+import { MovieListComponent } from '../../components/movie-list/movie-list.component';
 
 @Component({
   selector: 'app-popular-movies-page',
   standalone: true,
-  imports: [HeaderComponent, MaterialMovieCardComponent],
+  imports: [LayoutComponent, MovieListComponent],
   templateUrl: './popular-movies-page.component.html',
   styleUrl: './popular-movies-page.component.scss',
 })
 export class PopularMoviesPageComponent {
-  constructor(private router: Router) {}
-  popularMovies = movies;
-  favoritesIds: string[] = [];
-  watchLaterIds: string[] = [];
+  movies: Movie[] = popularMovies;
+  favoritesMovies: number[] = [];
+  watchLaterMovies: number[] = [];
+  @Output() titleEvent = new EventEmitter<string>();
 
-  addToFavoritesList(movieId: any) {
-    if (this.favoritesIds.includes(movieId))
-      this.favoritesIds = this.favoritesIds.filter((id) => id !== movieId);
-    else this.favoritesIds.push(movieId);
-    console.log(this.favoritesIds);
+  sendTitle() {
+    this.titleEvent.emit('Категорія: Популярні фільми');
   }
-  addToWatchList(movieId: any) {
-    if (this.watchLaterIds.includes(movieId))
-      this.watchLaterIds = this.watchLaterIds.filter((id) => id !== movieId);
-    else this.watchLaterIds.push(movieId);
+
+  private addToList(list: number[], id: number) {
+    const movieInList = list.find((movieId) => movieId === id);
+    if (movieInList) return list;
+    return [...list, id];
+  }
+
+  onAddToFavorites(id: number) {
+    this.favoritesMovies = this.addToList(this.favoritesMovies, id);
+  }
+
+  onAddToWatchlist(id: number) {
+    this.watchLaterMovies = this.addToList(this.watchLaterMovies, id);
   }
 }
