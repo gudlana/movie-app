@@ -1,21 +1,21 @@
 <mat-card class="example-card movie-card" appearance="outlined">    
-   <a (click)="navigateToMovieDetails(movie.id)" class="movie-card__link">
+   <a (click)="navigateToMovieDetails()" class="movie-card__link">
      <img mat-card-image [src]="imageUrl" alt="Poster">
     </a>
     <mat-card-footer class="movie-card__footer">
         <mat-card-title class="movie-card__title"><a [routerLink]="['/movie', movieId]" class="movie-card__link-title">{{movie.title}}</a></mat-card-title>
         <mat-card-subtitle class="movie-card__subtitle">Дата виходу: {{movie.release_date}} - Рейтинг: {{movie.vote_average}}</mat-card-subtitle>
         <ul class="movie-card__genres">
-            @for (item of genres; track $index) {
-              <li>{{ item }}</li>
+            @for (genre of genres; track $index) {
+              <li>{{ genre }}</li>
             }
           </ul>
     </mat-card-footer>
     <mat-card-actions class="movie-card__actions">
-        <button mat-button (click)="addToFavorites(movie.id, $event)">
+        <button mat-button (click)="onAddToFavorites(movie.id)">
             <mat-icon>favorite_border</mat-icon>
         </button>
-        <button mat-button (click)="addToWatchlist(movie.id, $event)">
+        <button mat-button (click)="onAddToWatchlist(movie.id)">
             <mat-icon>format_list_bulleted_add</mat-icon>      
         </button>
     </mat-card-actions>

@@ -1,37 +1,21 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Movie } from '../../entities/moviesIData';
-import { popularMovies } from '../../entities/moviesData';
-import { LayoutComponent } from '../../shared/layout/layout.component';
 import { MovieListComponent } from '../../components/movie-list/movie-list.component';
+import { MovieService } from '../../servises/movie.service';
 
 @Component({
   selector: 'app-popular-movies-page',
   standalone: true,
-  imports: [LayoutComponent, MovieListComponent],
+  imports: [MovieListComponent],
   templateUrl: './popular-movies-page.component.html',
   styleUrl: './popular-movies-page.component.scss',
 })
-export class PopularMoviesPageComponent {
-  movies: Movie[] = popularMovies;
-  favoritesMovies: number[] = [];
-  watchLaterMovies: number[] = [];
-  @Output() titleEvent = new EventEmitter<string>();
+export class PopularMoviesPageComponent implements OnInit {
+  movies: Movie[] = [];
 
-  sendTitle() {
-    this.titleEvent.emit('Категорія: Популярні фільми');
-  }
+  constructor(private movieService: MovieService) {}
 
-  private addToList(list: number[], id: number) {
-    const movieInList = list.find((movieId) => movieId === id);
-    if (movieInList) return list;
-    return [...list, id];
-  }
-
-  onAddToFavorites(id: number) {
-    this.favoritesMovies = this.addToList(this.favoritesMovies, id);
-  }
-
-  onAddToWatchlist(id: number) {
-    this.watchLaterMovies = this.addToList(this.watchLaterMovies, id);
+  ngOnInit() {
+    this.movies = this.movieService.getPopularMovies();
   }
 }

@@ -1,6 +1,3 @@
-<app-layout [movies]="movies"
-            [favoritesIds]="favoritesMovies"
-            [watchLaterIds]="watchLaterMovies"
-            (addedToFavorites)="onAddToFavorites($event)"
-            (addedToWatchlist)="onAddToWatchlist($event)">
-</app-layout>
+<section class="popular">
+    <app-movie-list [movies]="movies"></app-movie-list>
+</section>
