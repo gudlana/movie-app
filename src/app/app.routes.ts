@@ -19,15 +19,7 @@ export const routes: Routes = [
   { path: 'top-rate', component: TopRateMoviesPageComponent },
   { path: 'upcoming', component: UpcomingMoviesPageComponent },
   { path: 'movie/:id', component: MovieDetailsPageComponent },
-  {
-    path: 'favorite',
-    component: FavoriteMoviesPageComponent,
-    outlet: 'header',
-  },
-  {
-    path: 'watch-list',
-    component: WatchLaterMoviesPageComponent,
-    outlet: 'header',
-  },
+  { path: 'favorite', component: FavoriteMoviesPageComponent },
+  { path: 'watch-list', component: WatchLaterMoviesPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];

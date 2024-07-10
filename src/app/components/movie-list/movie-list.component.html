@@ -3,9 +3,7 @@
         <div class="movies-list__items">
             @for(movie of movies; track movie.id){
                 <app-material-movie-card
-                    [movie]="movie"
-                    (addedToFavorites)="addToFavorites($event)"
-                    (addedToWatchlist)="addToWatchlist($event)">
+                    [movie]="movie">
                 </app-material-movie-card>            }
         </div>
     </div>

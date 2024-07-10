@@ -3,27 +3,22 @@ import { MaterialMovieCardComponent } from '../../components/material-movie-card
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../entities/moviesIData';
 import { getMoviesById } from '../../utils/getMoviesById';
-import { LayoutComponent } from '../../shared/layout/layout.component';
 import { MovieListComponent } from '../../components/movie-list/movie-list.component';
+import { MovieService } from '../../servises/movie.service';
 
 @Component({
   selector: 'app-favorite-movies-page',
   standalone: true,
-  imports: [MovieListComponent, LayoutComponent],
+  imports: [MovieListComponent],
   templateUrl: './favorite-movies-page.component.html',
   styleUrl: './favorite-movies-page.component.scss',
 })
 export class FavoriteMoviesPageComponent implements OnInit {
   movies: Movie[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      const ids = params['data'].split(',').map(Number) as number[];
-      if (ids) {
-        this.movies = getMoviesById(ids);
-      }
-    });
+    this.movies = this.movieService.getFavoritesMovies();
   }
 }

@@ -1,14 +1,7 @@
-<!-- @if (watchLaterMovies.length){
-    <section class="movies-list">
-        <div class="movies-list__container">
-            <h2 class="movies-list__title">Переглянути пізніше</h2>
-            <div class="movies-list__items">
-                @for(movie of watchLaterMovies; track movie.id){
-                    <app-material-movie-card
-                        [movieData]="movie">
-                    </app-material-movie-card>
-                }
-            </div>
-        </div>
-    </section>
-} -->
+<section class="watch-later">
+    @if (movies.length){
+        <app-movie-list [movies]="movies"></app-movie-list>
+    } @else{
+        <p>Watchlist is empty</p>
+    }
+</section>

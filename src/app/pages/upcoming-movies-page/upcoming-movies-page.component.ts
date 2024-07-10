@@ -1,32 +1,22 @@
-import { Component } from '@angular/core';
-import { LayoutComponent } from '../../shared/layout/layout.component';
+import { Component, OnInit } from '@angular/core';
 import { MovieListComponent } from '../../components/movie-list/movie-list.component';
 import { Movie } from '../../entities/moviesIData';
 import { topRatedMovies } from '../../entities/moviesData';
+import { MovieService } from '../../servises/movie.service';
 
 @Component({
   selector: 'app-upcoming-movies-page',
   standalone: true,
-  imports: [LayoutComponent, MovieListComponent],
+  imports: [MovieListComponent],
   templateUrl: './upcoming-movies-page.component.html',
   styleUrl: './upcoming-movies-page.component.scss',
 })
-export class UpcomingMoviesPageComponent {
+export class UpcomingMoviesPageComponent implements OnInit {
   movies: Movie[] = topRatedMovies;
-  favoritesMovies: number[] = [];
-  watchLaterMovies: number[] = [];
 
-  private addToList(list: number[], id: number) {
-    const movieInList = list.find((movieId) => movieId === id);
-    if (movieInList) return list;
-    return [...list, id];
-  }
+  constructor(private movieService: MovieService) {}
 
-  onAddToFavorites(id: number) {
-    this.favoritesMovies = this.addToList(this.favoritesMovies, id);
-  }
-
-  onAddToWatchlist(id: number) {
-    this.watchLaterMovies = this.addToList(this.watchLaterMovies, id);
+  ngOnInit(): void {
+    this.movies = this.movieService.getUpcomingMovies();
   }
 }

@@ -14,6 +14,14 @@
                 </ul>          
             </div>
         </div>
+        <mat-card-actions class="movie-card__actions">
+            <button mat-button (click)="onAddToFavorites(movie.id)">
+                <mat-icon>favorite_border</mat-icon>
+            </button>
+            <button mat-button (click)="onAddToWatchList(movie.id)">
+                <mat-icon>format_list_bulleted_add</mat-icon>      
+            </button>
+        </mat-card-actions>
     </div>
 }
 
